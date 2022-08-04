@@ -8,6 +8,8 @@ namespace Armyio.Entity
     {
         private readonly IList<ISoldier> _soldiers = new List<ISoldier>();
 
+        public bool IsStanding { get; protected set; }
+        
         public void Add(ISoldier soldier) => _soldiers.Add(soldier);
 
         protected void Move(Vector3 direction)
