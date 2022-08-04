@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Armyio.Entity
 {
-    public class Team : MonoBehaviour
+    public abstract class Team : MonoBehaviour
     {
         private readonly IList<ISoldier> _soldiers = new List<ISoldier>();
 
-        public bool IsStanding { get; protected set; }
+        public abstract bool IsStanding { get; }
         
         public void Add(ISoldier soldier) => _soldiers.Add(soldier);
 
