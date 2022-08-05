@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using Armyio.Entity;
 using Armyio.InputSystem;
 using UnityEngine;
 using Zenject;
 
 namespace Armyio.Di
 {
-    public class PlayerInstaller : MonoInstaller
+    public class PlayerTeamInstaller : MonoInstaller
     {
         [Header("Input System")]
         [SerializeField] private Joystick _joystick;

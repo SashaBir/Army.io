@@ -1,7 +1,9 @@
-﻿namespace Armyio.Entity
+﻿using Armyio.InputSystem;
+
+namespace Armyio.Entity
 {
     public interface ICoreTeamMember
     {
-        bool IsStanding { get; }
+        IMovementMode MovementMode { get; }
     }
 }

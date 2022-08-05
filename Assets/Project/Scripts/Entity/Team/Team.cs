@@ -14,6 +14,7 @@ namespace Armyio.Entity
         public void Add(Soldier soldier)
         {
             _soldiers.Add(soldier);
+            soldier.transform.SetParent(transform);
             
             if (_coreTeamMember is null)
                 RecalculateCoreTeamMember();
@@ -21,6 +22,9 @@ namespace Armyio.Entity
 
         protected void Move(Vector3 direction)
         {
+            if (_soldiers.Count == 0)
+                return;
+            
             foreach (var soldier in _soldiers)
                 soldier.Movement.Move(direction);
         }
@@ -30,6 +34,7 @@ namespace Armyio.Entity
             if (_soldiers.Count == 1)
             {
                 _coreTeamMember = _soldiers[0].AddComponent<CoreTeamMember>();
+                _coreTeamMember.MovementMode = _soldiers[0].Movement;
                 return;
             }
         }
