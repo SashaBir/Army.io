@@ -12,6 +12,7 @@ namespace Armyio.Building
     public class Zone : MonoBehaviour
     {
         [SerializeField] [Min(0)] private float _delay; 
+        [field: SerializeField] public Transform Centre { get; private set; }
         
         public event Action OnStarted = delegate { };
         
@@ -21,23 +22,23 @@ namespace Armyio.Building
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Team team) == false)
+            if (other.TryGetComponent(out ICoreTeamMember coreTeamMember) == false)
                 return;
 
             _tokenSource = new CancellationTokenSource();
-            WaitTeam(team, _tokenSource.Token).Forget();
+            WaitTeam(coreTeamMember, _tokenSource.Token).Forget();
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out Team team) == false)
+            if (other.GetComponent<ICoreTeamMember>() is null)
                 return;
             
             _tokenSource.Cancel();
             OnEnded.Invoke();
         }
 
-        private async UniTaskVoid WaitTeam(Team team, CancellationToken token)
+        private async UniTaskVoid WaitTeam(ICoreTeamMember coreTeamMember, CancellationToken token)
         {
             do
             {
@@ -45,7 +46,7 @@ namespace Armyio.Building
 
                 do
                 {
-                    if (team.IsStanding == false)
+                    if (coreTeamMember.IsStanding == false)
                         expandedTime = 0;
                         
                     expandedTime += Time.deltaTime;
@@ -55,7 +56,7 @@ namespace Armyio.Building
                 while (expandedTime < _delay);
 
                 OnStarted.Invoke();
-                await UniTask.WaitWhile(() => team.IsStanding == true, cancellationToken: token);
+                await UniTask.WaitWhile(() => coreTeamMember.IsStanding == true, cancellationToken: token);
                 OnEnded.Invoke();
             }
             while(token.IsCancellationRequested == false);

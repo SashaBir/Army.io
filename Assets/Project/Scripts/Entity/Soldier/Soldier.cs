@@ -1,9 +1,9 @@
-﻿using Armyio.Physics;
+﻿using Armyio.InputSystem;
 using UnityEngine;
 
 namespace Armyio.Entity
 {
-    public class Soldier : MonoBehaviour, ISoldier
+    public class Soldier : MonoBehaviour
     {
         [field: SerializeField] public Movement Movement { get; private set; }
         

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Armyio.Physics
+namespace Armyio.InputSystem
 {
     public class Movement : MonoBehaviour
     {
