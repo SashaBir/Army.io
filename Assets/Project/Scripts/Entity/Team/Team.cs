@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using Zenject;
 
 namespace Armyio.Entity
 {
-    public abstract class Team : MonoBehaviour
+    public class Team : MonoBehaviour
     {
         private readonly IList<Soldier> _soldiers = new List<Soldier>();
 
-        private CoreTeamMember _coreTeamMember;
-        
+        protected CoreTeamMember coreTeamMember;
+
         public void Add(Soldier soldier)
         {
             _soldiers.Add(soldier);
             soldier.transform.SetParent(transform);
             
-            if (_coreTeamMember is null)
+            if (coreTeamMember is null)
                 RecalculateCoreTeamMember();
         }
 
@@ -29,14 +29,19 @@ namespace Armyio.Entity
                 soldier.Movement.Move(direction);
         }
 
-        private void RecalculateCoreTeamMember()
+        protected virtual void RecalculateCoreTeamMember()
+        {
+            Soldier soldier = FindCentreSoldier();   
+            coreTeamMember = soldier.gameObject.AddComponent<CoreTeamMember>();
+            coreTeamMember.MovementMode = soldier.Movement;
+        }
+
+        private Soldier FindCentreSoldier()
         {
             if (_soldiers.Count == 1)
-            {
-                _coreTeamMember = _soldiers[0].AddComponent<CoreTeamMember>();
-                _coreTeamMember.MovementMode = _soldiers[0].Movement;
-                return;
-            }
+                return _soldiers[0];
+
+            return null;
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Threading;
 using Armyio.Entity;
 using Cysharp.Threading.Tasks;
-using UniRx;
 using UnityEngine;
 
 namespace Armyio.Building
@@ -46,7 +45,7 @@ namespace Armyio.Building
 
                 do
                 {
-                    if (coreTeamMember.MovementMode.IsStanding == false)
+                    if (coreTeamMember.MovementMode?.IsStanding == false)
                         expandedTime = 0;
                         
                     expandedTime += Time.deltaTime;
@@ -56,7 +55,7 @@ namespace Armyio.Building
                 while (expandedTime < _delay);
 
                 OnStarted.Invoke();
-                await UniTask.WaitWhile(() => coreTeamMember.MovementMode.IsStanding == true, cancellationToken: token);
+                await UniTask.WaitWhile(() => coreTeamMember.MovementMode?.IsStanding == true, cancellationToken: token);
                 OnEnded.Invoke();
             }
             while(token.IsCancellationRequested == false);

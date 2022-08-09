@@ -1,5 +1,6 @@
 ﻿using Armyio.InputSystem;
 using UnityEngine;
+
 namespace Armyio.Entity
 {
     [RequireComponent(typeof(Collider))]
