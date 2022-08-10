@@ -1,18 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Armyio.Entity
 {
-    /*
-     * Test class
-     */
-    public class SoldierSpawner : MonoBehaviour
+    [Serializable]
+    public class SoldierSpawner
     {
-        [SerializeField] private Team _team;
         [SerializeField] private Soldier _soldier;
 
-        private void Awake()
-        {
-            //_team.Add(_soldier);
-        }
+        public Soldier Spawn(Transform container) => UnityEngine.Object.Instantiate(_soldier, container.position + new Vector3(2, 0, 2), Quaternion.identity);
     }
 }

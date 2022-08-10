@@ -8,12 +8,11 @@ namespace Armyio.Building
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
-    public class Zone : MonoBehaviour
+    public class ZoneDetector : MonoBehaviour
     {
         [SerializeField] [Min(0)] private float _delay; 
-        [field: SerializeField] public Transform Centre { get; private set; }
         
-        public event Action OnStarted = delegate { };
+        public event Action<ITeam> OnStarted = delegate { };
         
         public event Action OnEnded = delegate { };
         
@@ -54,7 +53,7 @@ namespace Armyio.Building
                 }
                 while (expandedTime < _delay);
 
-                OnStarted.Invoke();
+                OnStarted.Invoke(coreTeamMember.Team);
                 await UniTask.WaitWhile(() => coreTeamMember.MovementMode?.IsStanding == true, cancellationToken: token);
                 OnEnded.Invoke();
             }

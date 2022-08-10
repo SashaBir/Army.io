@@ -7,5 +7,7 @@ namespace Armyio.Entity
     public class CoreTeamMember : MonoBehaviour, ICoreTeamMember
     {
         public IMovementMode MovementMode { get; set; }
+        
+        public ITeam Team { get; set; }
     }
 }

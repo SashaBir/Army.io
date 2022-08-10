@@ -501,8 +501,9 @@ GameObject:
   - component: {fileID: 714432794}
   - component: {fileID: 714432793}
   - component: {fileID: 714432795}
+  - component: {fileID: 714432796}
   m_Layer: 0
-  m_Name: Zone
+  m_Name: ZoneSoldierSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +567,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 1
-  <Centre>k__BackingField: {fileID: 1861855575}
+--- !u!114 &714432796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714432791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f5cd8a275f47a39decd7467172c980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soldierSpawner:
+    _soldier: {fileID: 1626934609759707417, guid: b7c1fd891768018409dad4031e23af2d, type: 3}
+  _delayAfterSpawning: 1
 --- !u!1 &783505890
 GameObject:
   m_ObjectHideFlags: 3
@@ -1086,7 +1101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1271205fd2952f048bb4bcc8bf4c8b23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1209,8 +1224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f27f8d9787f4567982a1403a98783bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: {fileID: 0}
-  _soldier: {fileID: 1626934609759707417, guid: b7c1fd891768018409dad4031e23af2d, type: 3}
 --- !u!1 &1689847617
 GameObject:
   m_ObjectHideFlags: 0
