@@ -579,8 +579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f5cd8a275f47a39decd7467172c980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soldierSpawner:
-    _soldier: {fileID: 1626934609759707417, guid: b7c1fd891768018409dad4031e23af2d, type: 3}
+  _soldierSmartSpawner:
+    soldier: {fileID: 1626934609759707417, guid: b7c1fd891768018409dad4031e23af2d, type: 3}
+    _numberOfCircle: 60
+    _distance: 2
   _delayAfterSpawning: 1
 --- !u!1 &783505890
 GameObject:
@@ -992,7 +994,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.45596433, y: 1}
+    m_SensorSize: {x: 0.43924192, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1189,7 +1191,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637270188}
-  - component: {fileID: 1637270189}
   m_Layer: 0
   m_Name: SoldierSpawner
   m_TagString: Untagged
@@ -1212,18 +1213,6 @@ Transform:
   m_Father: {fileID: 2018652173}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1637270189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637270187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f27f8d9787f4567982a1403a98783bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1689847617
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace Armyio.Building
     [RequireComponent(typeof(ZoneDetector))]
     public class ZoneSoldierSpawner : MonoBehaviour
     {
-        [SerializeField] private SoldierSpawner _soldierSpawner;
+        [SerializeField] private SoldierSmartSpawner _soldierSmartSpawner;
         [SerializeField] [Min(0)] private float _delayAfterSpawning;
 
         private ZoneDetector _zoneDetector;
@@ -37,7 +37,7 @@ namespace Armyio.Building
         {
             while (token.IsCancellationRequested == false)
             {
-                Soldier soldier = _soldierSpawner.Spawn(team.Container);
+                Soldier soldier = _soldierSmartSpawner.Spawn(team.PositionCoreTeamMember);
                 team.Add(soldier);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_delayAfterSpawning), cancellationToken: token);

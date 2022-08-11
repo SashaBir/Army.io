@@ -9,7 +9,7 @@ namespace Armyio.Entity
 
         protected CoreTeamMember coreTeamMember;
 
-        public Transform Container => transform;
+        public Vector3 PositionCoreTeamMember => coreTeamMember.transform.position;
 
         public void Add(Soldier soldier)
         {

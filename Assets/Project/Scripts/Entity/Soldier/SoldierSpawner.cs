@@ -6,8 +6,8 @@ namespace Armyio.Entity
     [Serializable]
     public class SoldierSpawner
     {
-        [SerializeField] private Soldier _soldier;
+        [SerializeField] protected Soldier soldier;
 
-        public Soldier Spawn(Transform container) => UnityEngine.Object.Instantiate(_soldier, container.position + new Vector3(2, 0, 2), Quaternion.identity);
+        public virtual Soldier Spawn(Vector3 position) => UnityEngine.Object.Instantiate(soldier, position, Quaternion.identity);
     }
 }

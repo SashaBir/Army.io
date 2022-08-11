@@ -4,7 +4,7 @@ namespace Armyio.Entity
 {
     public interface ITeam
     {
-        Transform Container { get; }
+        Vector3 PositionCoreTeamMember { get; }
         
         void Add(Soldier soldier);
     }
