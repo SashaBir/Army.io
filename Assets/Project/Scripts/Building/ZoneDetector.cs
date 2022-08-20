@@ -44,7 +44,7 @@ namespace Armyio.Building
 
                 do
                 {
-                    if (coreTeamMember.MovementMode?.IsStanding == false)
+                    if (coreTeamMember?.MovementMode?.IsStanding == false)
                         expandedTime = 0;
                         
                     expandedTime += Time.deltaTime;
@@ -53,8 +53,8 @@ namespace Armyio.Building
                 }
                 while (expandedTime < _delay);
 
-                OnStarted.Invoke(coreTeamMember.Team);
-                await UniTask.WaitWhile(() => coreTeamMember.MovementMode?.IsStanding == true, cancellationToken: token);
+                OnStarted.Invoke(coreTeamMember?.Team);
+                await UniTask.WaitWhile(() => coreTeamMember?.MovementMode?.IsStanding == true, cancellationToken: token);
                 OnEnded.Invoke();
             }
             while(token.IsCancellationRequested == false);

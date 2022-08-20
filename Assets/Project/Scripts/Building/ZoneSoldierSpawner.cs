@@ -37,6 +37,9 @@ namespace Armyio.Building
         {
             while (token.IsCancellationRequested == false)
             {
+                if (team is null)
+                    return;
+
                 Soldier soldier = _soldierSmartSpawner.Spawn(team.PositionCoreTeamMember);
                 team.Add(soldier);
 

@@ -7,7 +7,7 @@ namespace Armyio.Entity
     public class SoldierSmartSpawner : SoldierSpawner
     {
         [SerializeField] [Min(1)] private float _numberOfCircle;
-        [SerializeField] [Min(1)] private float _distance; 
+        [SerializeField] [Min(0)] private float _distance; 
         
         public override Soldier Spawn(Vector3 positionCoreTeamMember) => base.Spawn(FindFreePosition(positionCoreTeamMember));
 

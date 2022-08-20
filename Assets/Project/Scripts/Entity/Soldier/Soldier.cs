@@ -1,4 +1,5 @@
-﻿using Armyio.InputSystem;
+﻿using Armyio.Gameplay;
+using Armyio.InputSystem;
 using UnityEngine;
 
 namespace Armyio.Entity
@@ -7,9 +8,6 @@ namespace Armyio.Entity
     {
         [field: SerializeField] public Movement Movement { get; private set; }
         
-        public void Shoot()
-        {
-            
-        }
+        [field: SerializeField] public Weapon Weapon { get; private set; }
     }
 }

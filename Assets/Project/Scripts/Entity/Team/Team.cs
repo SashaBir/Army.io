@@ -1,15 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Armyio.Entity
 {
     public class Team : MonoBehaviour, ITeam
     {
-        private readonly IList<Soldier> _soldiers = new List<Soldier>();
+        [SerializeField] private TeamDetector _teamDetector;
+        
+        private readonly List<Soldier> _soldiers = new List<Soldier>();
 
         protected CoreTeamMember coreTeamMember;
 
+        public IEnumerable<Soldier> Soldiers => _soldiers;
+        
         public Vector3 PositionCoreTeamMember => coreTeamMember.transform.position;
+
+        private void OnEnable()
+        {
+            _teamDetector.OnEnemyTeamDetected += StartAttacking;
+            _teamDetector.OnEnemyTeamUndetected += StopAttacking;
+        }
+
+        private void OnDisable()
+        { 
+            _teamDetector.OnEnemyTeamDetected -= StartAttacking;
+            _teamDetector.OnEnemyTeamUndetected -= StopAttacking;
+        }
 
         public void Add(Soldier soldier)
         {
@@ -35,6 +52,8 @@ namespace Armyio.Entity
             coreTeamMember = soldier.gameObject.AddComponent<CoreTeamMember>();
             coreTeamMember.MovementMode = soldier.Movement;
             coreTeamMember.Team = this;
+
+            _teamDetector.CoreTeamMember = coreTeamMember;
         }
 
         private Soldier FindCentreSoldier()
@@ -43,6 +62,20 @@ namespace Armyio.Entity
                 return _soldiers[0];
 
             return null;
+        }
+
+        private void StartAttacking(IEnumerable<Soldier> soldiers)
+        {
+            _soldiers.TrimExcess();
+            foreach (var soldier in _soldiers)
+                soldier.Weapon.StartShooting(soldiers);
+        }
+        
+        private void StopAttacking()
+        {
+            _soldiers.TrimExcess();
+            foreach (var soldier in _soldiers)
+                soldier.Weapon.StopShooting();
         }
     }
 }

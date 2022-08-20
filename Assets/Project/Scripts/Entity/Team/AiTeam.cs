@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace Armyio.Entity
 {
-    public class AiTeam : MonoBehaviour
+    public class AiTeam : Team
     {
         
     }

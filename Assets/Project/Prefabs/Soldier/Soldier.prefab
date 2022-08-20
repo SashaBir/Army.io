@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1626934609759707422}
   - component: {fileID: 1626934609759707423}
   - component: {fileID: 1626934609759707416}
+  - component: {fileID: 7608180145662325500}
   - component: {fileID: 1626934609759707417}
   m_Layer: 0
   m_Name: Soldier
@@ -162,6 +163,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1626934609759707422}
   _speed: 10
+--- !u!114 &7608180145662325500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626934609759707419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08960366cc7242e3b7ca91c44c376b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 0}
+  _shootingDelay: 0
 --- !u!114 &1626934609759707417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +190,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Movement>k__BackingField: {fileID: 1626934609759707416}
+  <Weapon>k__BackingField: {fileID: 7608180145662325500}

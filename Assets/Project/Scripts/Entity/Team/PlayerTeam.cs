@@ -1,7 +1,5 @@
-﻿using System;
-using Armyio.InputSystem;
+﻿using Armyio.InputSystem;
 using Cinemachine;
-using UnityEngine;
 using Zenject;
 
 namespace Armyio.Entity
